@@ -6,25 +6,26 @@
     width: 100%;
 }
 h1{
-    color: var(--white);
+    color: var(--extra_blue);
+    font-family: Georgia, serif;
 }
 label{
     margin-top: 2%;
-    color: var(--white);
     font-size: 1.5em;
     color:var(--extra_blue)
 }
 .part input{
     margin-top: 2%;
     padding: 10px;
-    border: 1px solid  var(--baby);
+    border: 1px solid  var(--extra_blue);
     border-radius: 10px;
-    background-color: var(--baby);
+    background-color: var(--white);
     color: var(--extra_blue);
     width: 100%;
     font-size: 1.5em;
     
 }
+
 input[type='password'] {
     font-family: Verdana;
     letter-spacing: 0.125em;
