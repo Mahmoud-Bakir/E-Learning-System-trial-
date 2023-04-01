@@ -1,0 +1,18 @@
+:root {
+  --baby: #E4F4F3;
+  --blue: #A1DBF1;
+  --extra_blue: #0C6170;
+  --black: #31352E;
+  --white: #ffffff;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, serif;
+}
+
+body{
+  margin:0;
+  background-color:var(--blue);
+}
