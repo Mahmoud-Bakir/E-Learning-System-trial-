@@ -67,7 +67,7 @@ const SignupForm=()=>{
             <Partition lname={"Last Name"} itype={"text"} onChange={handleLast}/>
             <Partition lname={"Email"} itype={"email"}onChange={handleEmail}/>
             <Partition lname={"password"} itype={"password"}onChange={handlePassword}/>
-            <Button name={"Sign-Up"}/>
+            <Button name={"Sign-Up"}onSubmit={handleSubmit}/>
             <br />
             <p className="error"></p>
            <p className="text" >already have an account?</p> 
