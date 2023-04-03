@@ -1,6 +1,5 @@
 import Nav from "../NavBar/nav"
 import Partition from "../Partition/partition"
-import "./signin.css"
 import Button from "../Button/button"
 import { useState } from "react"
 import axios from "axios"
