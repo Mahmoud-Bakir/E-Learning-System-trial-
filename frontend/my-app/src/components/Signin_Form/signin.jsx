@@ -26,16 +26,24 @@ const SigninForm=()=>{
   const handleSubmit=()=>{
     if (validateEmail(email)){
         if(validatePassword(password)){
-        const data = new FormData()
-        data.append("email",email)
-        data.append("password",password )
-        axios.post("http://127.0.0.1:8000/api/v0.0.1/auth/login",data)
-        .then((res) => {
-        localStorage.setItem('token',res.data.authorisation.token);
-        localStorage.setItem('email',res.data.user.email);
-        window.location.href="http://localhost:3000/code_editor"  
+        const data = {
+          email:email,
+          password:password
+        }
+        const jsonData =JSON.stringify(data)
+        axios.post('http://localhost:3000/auth/login',jsonData,
+        {
+          
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) => {
+        console.log(res)
+        localStorage.setItem("token",res.token)
         }).catch((err) => {
-        console.log(err);
+          console.log(jsonData)
+           console.log(err);
         })
        }else(setPassword("Invalid credentials"))
      }else(setPassword("Invalid credentials"))

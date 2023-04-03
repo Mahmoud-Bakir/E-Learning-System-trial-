@@ -1,7 +1,7 @@
 import "./button.css"
-const Button = ({name})=>{
+const Button = ({name,onSubmit})=>{
     return(
-    <input className="btn" type="submit" value={name} />
+    <input className="btn" type="submit" value={name} onClick={onSubmit}/>
     )
 } 
 export default Button;

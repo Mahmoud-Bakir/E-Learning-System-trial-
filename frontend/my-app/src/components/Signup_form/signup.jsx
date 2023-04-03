@@ -10,6 +10,7 @@ const SignupForm=()=>{
         const [last,setLast]=useState("")
         const [email,setEmail]=useState("")
         const [password,setPassword]=useState("")
+        const [error,setError]=useState("")
      
         const validateEmail=(email) =>{
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,30 +34,39 @@ const SignupForm=()=>{
          const handlePassword=(e)=>{
           setPassword(e.target.value)
          }
+         
+  
      
          const handleSubmit=()=>{
           if (first==="" || last==="" || email==="" || password===""){
-              setPassword("All input are required")
+              setError("All input are required")
+              console.log()
              }else{
                if (validateEmail(email)){
                  if(validatePassword(password)){  
-                   const data = new FormData()
-                   data.append("first_name",first)
-                   data.append("last_name",last)
-                   data.append("email",email)
-                   data.append("password",password)
-                   data.append("user_type_id",2)
-                   axios.post("http://127.0.0.1:8000/api/v0.0.1/register",data)
-                   .then((res) => {
-                      console.log(res)
-                      localStorage.setItem('token',res.data.authorisation.token);
-                      localStorage.setItem('email',res.data.user.email);
-                      window.location.href="http://localhost:3000/code_editor"     
-                      }).catch((err) => {
-                         console.log(err);
-                      })
-                  }else(setPassword("Invalid credentials"))
-             }else(setPassword("Invalid credentials"))
+                    const data = {
+                     first_name: first,
+                     last_name: last,
+                     email: email,
+                     password:password
+                   };
+                   const jsonData = JSON.stringify(data);
+                   axios.post('http://localhost:3000/auth/register',jsonData,
+                    {
+                      
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  })
+                  .then((res) => {
+                    console.log(res)
+                    }).catch((err) => {
+                       console.log(err);
+                    })
+                    
+
+                  }else(setError("Invalid password"))
+             }else(setError("Invalid email"))
                   }
           }
     return(<>
@@ -69,7 +79,7 @@ const SignupForm=()=>{
             <Partition lname={"password"} itype={"password"}onChange={handlePassword}/>
             <Button name={"Sign-Up"}onSubmit={handleSubmit}/>
             <br />
-            <p className="error"></p>
+            <p className="error" >{error}</p>
            <p className="text" >already have an account?</p> 
         </div>
         </>
