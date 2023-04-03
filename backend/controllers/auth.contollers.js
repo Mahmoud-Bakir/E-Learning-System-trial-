@@ -1,5 +1,6 @@
 const User = require("../models/userModel")
 const jwt = require("jsonwebtoken");
+const Document=require("../models/documentModel")
 
 
 exports.register = async (req, res) => {
@@ -14,7 +15,7 @@ exports.register = async (req, res) => {
 
 console.log(user)
   if (role) user.role = role;
- // await user.save();
+  await user.save();
   const { password: hashedPassword, ...newUser } = user.toJSON()
   res.status(201).json(newUser);
 }
@@ -33,4 +34,16 @@ exports.login = async (req, res) => {
   res.json({ token })
 
 }
+
+exports.add = async (req, res) => {
+  const { title, content } = req.body;
+
+  const document = new Document();
+  document.title = title;
+  document.content = content;
+  console.log(document)
+  await document.save();
+  res.json({ document })
+}
+
 
