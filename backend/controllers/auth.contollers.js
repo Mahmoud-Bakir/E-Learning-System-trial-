@@ -4,12 +4,14 @@ const Document=require("../models/documentModel")
 
 
 exports.register = async (req, res) => {
-  const { email, password, role } = req.body;
-  // const existingUser = await User.findOne({ email });
+  const {first_name,last_name, email, password, role } = req.body;
+  const existingUser = await User.findOne({ email });
 
-  //if (existingUser) return res.status(409).json({ message: "Email already exists" })
+  if (existingUser) return res.status(409).json({ message: "Email already exists" })
 
   const user = new User();
+  user.first_name=first_name;
+  user.last_name=last_name;
   user.email = email;
   user.password = password;
 
